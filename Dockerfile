@@ -20,9 +20,9 @@ RUN git clone https://github.com/WireGuard/wireguard-tools
 WORKDIR /app/wireguard-tools/src
 RUN make
 
-FROM redhat/ubi9-minimal:latest
-RUN microdnf update -y
-RUN microdnf install -y iptables nc
+FROM ubuntu:latest
+RUN apt update -y
+RUN apt install iptables netcat-openbsd -y
 
 COPY --from=builder /app/wireguard-tools/src/wg /bin
 
